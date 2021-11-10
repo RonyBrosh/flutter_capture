@@ -2,8 +2,8 @@
 A shell script to easily capture Android and iOS screenshots and videos.
 Just download this script to your download folder or any other folder you want the result files to be created.
 
-Please note, You might need to run</br>
-**chmod +x /path/to/yourscript.sh**</br>
+Please note, You might need to run in your terminal</br>
+**chmod +x /path/to/yourscript.sh**</br> (or just the file name if you're in the same folder as the script e.g. chmod +x screen_capture.sh)
 before running the actual script</br>
 **./screen_capture.sh**</br>
 

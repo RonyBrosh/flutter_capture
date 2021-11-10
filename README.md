@@ -8,6 +8,7 @@ before running the actual script</br>
 **./screen_capture.sh**</br>
 
 By the way, if you want to make it clickable just replace the **.sh** extension with **.command** and you'll be able to double click the file.
+The folder where youu double clicked the file will be the destination folder for the result files.
 
 Please also note, I tested only on macOS if you find any issues on other platforms feel free to contribute to this script.
 

@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+
+# Acknowledgement
+# Thanks to [@FriendlyTester](https://gist.github.com/FriendlyTester) for his well documented script to capture Android: https://gist.github.com/FriendlyTester/67c7ad26ab62849aea91
+# Thanks to [@Alexander Klimetschek](https://unix.stackexchange.com/users/219724/alexander-klimetschek) for his super cool option selection script: https://unix.stackexchange.com/questions/146570/arrow-key-enter-menu/415155
+
 # Renders a text based list of options that can be selected by the
 # user using up, down and enter keys and returns the chosen option.
 #

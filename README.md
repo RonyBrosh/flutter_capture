@@ -13,3 +13,9 @@ The folder where youu double clicked the file will be the destination folder for
 Please also note, I tested only on macOS if you find any issues on other platforms feel free to contribute to this script.
 
 <img width="801" alt="Screenshot 2021-11-10 at 21 59 01" src="https://user-images.githubusercontent.com/10864805/141200323-19fc21e9-0538-440a-923a-185a663c3f48.png">
+
+
+# Acknowledgement
+Thanks to [@FriendlyTester](https://gist.github.com/FriendlyTester) for his well documented script to capture Android: https://gist.github.com/FriendlyTester/67c7ad26ab62849aea91
+
+Thanks to [@Alexander Klimetschek](https://unix.stackexchange.com/users/219724/alexander-klimetschek) for his super cool option selection script: https://unix.stackexchange.com/questions/146570/arrow-key-enter-menu/415155

@@ -85,7 +85,7 @@ function select_opt {
 
 function capture_android_video {
 	# Start recording
-	adb shell screenrecord /sdcard/android_demo.mp4 & 
+	adb shell screenrecord /sdcard/$fileName &
 
 	# Get its PID
 	PID=$!
@@ -100,10 +100,10 @@ function capture_android_video {
 	sleep 3
 
 	# Download the video
-	adb pull /sdcard/android_demo.mp4 $SCRIPT_DIR/android_demo.mp4
+	adb pull /sdcard/$fileName $SCRIPT_DIR/$fileName
 
 	# Delete the video from the device
-	adb shell rm /sdcard/android_demo.mp4
+	adb shell rm /sdcard/$fileName
 
 	# Kill background process incase kill PID fails
 	trap "kill 0" SIGINT SIGTERM EXIT
@@ -111,18 +111,18 @@ function capture_android_video {
 
 function capture_android_screenshot {
 	# Take a screenshot
-	adb shell screencap /sdcard/android_demo.png 
+	adb shell screencap /sdcard/$fileName
 
 	# Download the screenshot
-	adb pull /sdcard/android_demo.png $SCRIPT_DIR/android_demo.png
+	adb pull /sdcard/$fileName $SCRIPT_DIR/$fileName
 
 	# Delete the video from the device
-	adb shell rm /sdcard/android_demo.png
+	adb shell rm /sdcard/$fileName
 }
 
 function capture_ios_video {
     # Start recording
-    xcrun simctl io booted recordVideo $SCRIPT_DIR/ios_demo.mp4 -f & 
+    xcrun simctl io booted recordVideo $SCRIPT_DIR/$fileName -f &
 
     # Get its PID
     PID=$!
@@ -145,10 +145,34 @@ function capture_ios_video {
 
 function capture_ios_screenshot {
     # Take a screenshot
-    xcrun simctl io booted screenshot $SCRIPT_DIR/ios_demo.png
+    xcrun simctl io booted screenshot $SCRIPT_DIR/$fileName
 }
 
-DIR="$(dirname "$(realpath "$0")")"
+function create_file_name {
+    if $isVideo
+    then
+        if [ "$fileName" ]
+        then
+            echo "$fileName.mp4"
+        elif $isAndroid
+        then
+            echo "android_demo.mp4"
+        else
+            echo "ios_demo.mp4"
+        fi
+    else
+        if [ "$fileName" ]
+        then
+            echo "$fileName.png"
+        elif $isAndroid
+        then
+            echo "android_demo.png"
+        else
+            echo "ios_demo.png"
+        fi
+    fi
+}
+
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 echo "Select platform"
@@ -164,6 +188,10 @@ case `select_opt "Video" "Screenshot"` in
     0) isVideo=true;;
     1) isVideo=false;;
 esac
+
+echo "Enter a file name without extension or press [Enter] for detault"
+read fileName
+fileName=$(create_file_name)
 
 if $isVideo
 then
@@ -183,3 +211,5 @@ else
 	fi
 	echo "Capture screenshot completed"
 fi
+
+read -p "Press [Enter] to exit"
